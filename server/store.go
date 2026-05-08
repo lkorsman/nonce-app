@@ -19,20 +19,20 @@ var (
 type nonce struct {
 	value     string
 	expiresAt time.Time
-	usedAt 	  *time.Time // nil if unused - records WHEN it was used
+	usedAt    *time.Time // nil if unused - records WHEN it was used
 }
 
 // NonceStore holds all issued nonces in memory.
 type NonceStore struct {
 	mu     sync.RWMutex // Used to prevent race conditions
 	nonces map[string]*nonce
-	ttl time.Duration
+	ttl    time.Duration
 }
 
 func NewNonceStore(ttl time.Duration) *NonceStore {
 	return &NonceStore{
 		nonces: make(map[string]*nonce),
-		ttl: ttl,
+		ttl:    ttl,
 	}
 }
 
@@ -48,7 +48,7 @@ func (s *NonceStore) Issue() (string, error) {
 	defer s.mu.Unlock()
 
 	s.nonces[val] = &nonce{
-		value: val,
+		value:     val,
 		expiresAt: time.Now().Add(s.ttl),
 	}
 
