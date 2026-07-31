@@ -12,7 +12,7 @@ type issueReponse struct {
 	TTL   string `json:"ttl"`
 }
 
-// consumeRequest is what the client sneds when verifying a nonce
+// consumeRequest is what the client sends when verifying a nonce
 type consumeRequest struct {
 	Nonce string `json:"nonce"`
 }
